@@ -1,4 +1,6 @@
 const grid = document.querySelector('.grid');
+const spanPlayer = document.querySelector('.player');
+const timer = document.querySelector('.timer');
 
 const characters = [
     'rock' , 
@@ -26,7 +28,8 @@ const checkEndGame = () => {
     const disabledCards = document.querySelectorAll('.disabled-card')
 
     if(disabledCards.length == 20) {
-        alert('Parabens, você ganhou o game');
+        alert(`Parabéns ${spanPlayer.innerHTML}! Seu tempo foi:${timer.innerHTML}`);
+        clearInterval(this.loop);
     }
 }
 
@@ -104,4 +107,25 @@ const loadGame = () => {
     })
 }
 
-loadGame();
+const startTimer = () => {
+    this.loop = setInterval(() => {
+        const currentTime = +timer.innerHTML;
+        timer.innerHTML = currentTime - 1;
+
+        if(timer.innerHTML == 0 ){
+            alert("se fodeo");
+        }
+    }, 1000);
+}
+
+
+window.onload = () => {
+    spanPlayer.innerHTML = localStorage.getItem('player');
+    startTimer();
+
+    loadGame();
+}
+
+const restart = () => {
+    
+}
