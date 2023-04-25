@@ -1,6 +1,9 @@
+
+
 const grid = document.querySelector('.grid');
 const spanPlayer = document.querySelector('.player');
 const timer = document.querySelector('.timer');
+
 
 const characters = [
     'beth' , 
@@ -28,7 +31,7 @@ const checkEndGame = () => {
     const disabledCards = document.querySelectorAll('.disabled-card')
 
     if(disabledCards.length == 20) {
-        alert(`Parabéns ${spanPlayer.innerHTML}! Seu tempo foi:${timer.innerHTML}`);
+        swal(`Parabéns ${spanPlayer.innerHTML}`, `Você concluiu o game faltando:\n${timer.innerHTML} Seg`, 'success');
         clearInterval(this.loop);
     }
 }
@@ -113,7 +116,8 @@ const startTimer = () => {
         timer.innerHTML = currentTime - 1;
 
         if(timer.innerHTML == 0 ){
-            alert("se fodeo");
+            swal("Você Perdeu!", "Você não concluiu o Jogo a tempo, recarregue a página para jogar novamente", "error");
+            clearInterval(this.loop);
         }
     }, 1000);
 }
